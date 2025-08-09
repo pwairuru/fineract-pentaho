@@ -233,14 +233,16 @@
     </build>
 
     <repositories>
+        
         <repository>
             <id>hitachivantara</id>
             <name>hitachivantara</name>
-            <url>https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn/</url>
+            <url>https://hitachiedge1.jfrog.io/artifactory/pnt-mvn/</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
+        
         <repository>          
           <id>fineract-release</id>
           <name>libs-release-local</name>
