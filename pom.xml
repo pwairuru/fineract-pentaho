@@ -182,6 +182,19 @@
             <version>${pentaho.version}</version>
             <scope>compile</scope>            
 	</dependency>
+
+    <dependency>
+        <groupId>org.graalvm.polyglot</groupId>
+        <artifactId>polyglot</artifactId>
+        <version>24.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.graalvm.polyglot</groupId>
+        <artifactId>js</artifactId>
+        <version>24.2.1</version>
+        <type>pom</type>
+    </dependency>
+    <!--
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js</artifactId>
@@ -194,6 +207,7 @@
             <version>${graal.version}</version>
             <scope>compile</scope>            
 	</dependency>
+    -->
         <!-- Testing-->
         <dependency>
             <groupId>org.apache.fineract</groupId>
