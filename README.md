@@ -36,7 +36,7 @@ Building and using it against other Apache Fineract® versions may be possible, 
 1. Download and compile
 
 ```bash
-    git clone https://github.com/openMF/fineract-pentaho.git
+    git clone https://github.com/openMF/mifos-reporting-plugin.git
     cd mifos-reporting-plugin && ./mvnw -Dmaven.test.skip=true clean package && cd ..
 ```
 2. Export the Location of Mifos® reports (PRPT files) in the following variable
@@ -82,7 +82,7 @@ During that move, the Pentaho® related code had to be removed, because Pentaho�
 The correct technical solution to resolve such conundrums is to use a plugin architecture - which is what this is.
 
 Note that the code and report templates in this git repo itself are
-[licensed to you under the Mozilla® Public License 2.0 (MPL)](https://github.com/openMF/fineract-pentaho/blob/develop/LICENSE).
+[licensed to you under the Mozilla® Public License 2.0 (MPL)](https://github.com/openMF/mifos-reporting-plugin/blob/develop/LICENSE).
 This is a separate question than the license that Pentaho® itself (i.e. the JAR/s of Pentaho®) are made available under.
 
 ## Important
