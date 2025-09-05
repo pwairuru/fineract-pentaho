@@ -14,7 +14,12 @@
     export FINERACT_PENTAHO_REPORTS_PATH="$PWD/pentahoReports/"
 ```    
 
-3. [Download link for Mifos® Reporting Plugin ](https://sourceforge.net/projects/mifos/files/mifos-plugins/FineractPentahoPlugin/FineractPentahoPlugin-1.10.0.zip/download)  and extract the files (java jar files are on it)
+3. Download the Mifos® Security Plugin and extract the files (all the libraries required for running it are included). **It is very important to use the specific version according to the Apache Fineract**
+
+| Apache Fineract | Mifos Reporting Plugin | Download Link |
+| :---:         |     :---:      |          :---: |
+| 1.12.0   | 1.12.1     | [Mifos® Security Plugin v1.12.1](https://sourceforge.net/projects/mifos/files/mifos-plugins/MifosSecurityPlugin/MifosSecurityPlugin-1.12.1.zip/download)     |
+| 1.11.0     | 1.11.0       | [Mifos® Security Plugin v1.11.0](https://sourceforge.net/projects/mifos/files/mifos-plugins/MifosReportingPlugin/FineractPentahoPlugin-1.11.zip/download)      |
 
 4a. Execute only for Docker® - Create a directory, copy the Mifos® Reporting Plugin and the Pentaho® libraries in it
 
