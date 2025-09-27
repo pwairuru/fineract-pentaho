@@ -180,7 +180,7 @@ public class PentahoReportingProcessServiceImpl implements ReportingProcessServi
             
             // Fallback: shared version
             if (!new File(reportPath).exists()) {
-                String sharedPath = getSharedReportsPath() + reportName + ".prpt";
+                String sharedPath = getSharedReportsPath() + reportName + ".prpt";f
                 if (new File(sharedPath).exists()) {
                     reportPath = sharedPath;
                 }
