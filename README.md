@@ -14,7 +14,12 @@
     export FINERACT_PENTAHO_REPORTS_PATH="$PWD/pentahoReports/"
 ```    
 
-3. [Download link for Mifos® Reporting Plugin ](https://sourceforge.net/projects/mifos/files/mifos-plugins/FineractPentahoPlugin/FineractPentahoPlugin-1.10.0.zip/download)  and extract the files (java jar files are on it)
+3. Download the Mifos® Security Plugin and extract the files (all the libraries required for running it are included). **It is very important to use the specific version according to the Apache Fineract**
+
+| Apache Fineract | Mifos Reporting Plugin | Download Link |
+| :---:         |     :---:      |          :---: |
+| 1.12.0   | 1.12.1     | [Mifos® Security Plugin v1.12.1](https://sourceforge.net/projects/mifos/files/mifos-plugins/MifosReportingPlugin/MifosSecurityPlugin-1.12.1.zip/download)     |
+| 1.11.0     | 1.11.0       | [Mifos® Security Plugin v1.11.0](https://sourceforge.net/projects/mifos/files/mifos-plugins/MifosReportingPlugin/FineractPentahoPlugin-1.11.zip/download)      |
 
 4a. Execute only for Docker® - Create a directory, copy the Mifos® Reporting Plugin and the Pentaho® libraries in it
 
@@ -36,7 +41,7 @@ Building and using it against other Apache Fineract® versions may be possible, 
 1. Download and compile
 
 ```bash
-    git clone https://github.com/openMF/fineract-pentaho.git
+    git clone https://github.com/openMF/mifos-reporting-plugin.git
     cd mifos-reporting-plugin && ./mvnw -Dmaven.test.skip=true clean package && cd ..
 ```
 2. Export the Location of Mifos® reports (PRPT files) in the following variable
@@ -82,7 +87,7 @@ During that move, the Pentaho® related code had to be removed, because Pentaho�
 The correct technical solution to resolve such conundrums is to use a plugin architecture - which is what this is.
 
 Note that the code and report templates in this git repo itself are
-[licensed to you under the Mozilla® Public License 2.0 (MPL)](https://github.com/openMF/fineract-pentaho/blob/develop/LICENSE).
+[licensed to you under the Mozilla® Public License 2.0 (MPL)](https://github.com/openMF/mifos-reporting-plugin/blob/develop/LICENSE).
 This is a separate question than the license that Pentaho® itself (i.e. the JAR/s of Pentaho®) are made available under.
 
 ## Important

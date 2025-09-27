@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>community.mifos</groupId>
@@ -16,11 +16,11 @@
 
     <properties>
         <java.version>21</java.version>
-        <fineract.version>0.0.1183-2610732</fineract.version>
-        <pentaho.version>9.4.0.0-SNAPSHOT</pentaho.version>
-        <graal.version>23.1.8</graal.version>
+        <fineract.version>0.0.1255-f5dfcf1</fineract.version>
+        <pentaho.version>9.4.0.0-343</pentaho.version>
+        <graal.version>24.2.2</graal.version>
         <eclipselink.version>4.0.7</eclipselink.version>
-        <truth.version>1.4.4</truth.version>
+        <truth.version>1.4.5</truth.version>
     </properties>
 
     <dependencies>
@@ -182,18 +182,18 @@
             <version>${pentaho.version}</version>
             <scope>compile</scope>            
 	</dependency>
-        <dependency>
-            <groupId>org.graalvm.js</groupId>
-            <artifactId>js</artifactId>
-            <version>${graal.version}</version>
-            <scope>compile</scope>            
-	</dependency>
-        <dependency>
-            <groupId>org.graalvm.js</groupId>
-            <artifactId>js-scriptengine</artifactId>
-            <version>${graal.version}</version>
-            <scope>compile</scope>            
-	</dependency>
+
+    <dependency>
+        <groupId>org.graalvm.polyglot</groupId>
+        <artifactId>polyglot</artifactId>
+        <version>${graal.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.graalvm.polyglot</groupId>
+        <artifactId>js</artifactId>
+        <version>${graal.version}</version>
+        <type>pom</type>
+    </dependency>
         <!-- Testing-->
         <dependency>
             <groupId>org.apache.fineract</groupId>
@@ -232,15 +232,15 @@
         </pluginManagement>
     </build>
 
-    <repositories>
+    <repositories>        
         <repository>
             <id>hitachivantara</id>
             <name>hitachivantara</name>
-            <url>https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn/</url>
+            <url>https://hitachiedge1.jfrog.io/artifactory/pnt-mvn/</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
-        </repository>
+        </repository>        
         <repository>          
           <id>fineract-release</id>
           <name>libs-release-local</name>
