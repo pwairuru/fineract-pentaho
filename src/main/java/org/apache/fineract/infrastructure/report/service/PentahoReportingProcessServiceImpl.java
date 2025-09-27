@@ -159,12 +159,40 @@ public class PentahoReportingProcessServiceImpl implements ReportingProcessServi
         logger.debug("locale " + locale);
         logger.debug("language " + language);
         if (!"en".equals(locale.toString().toLowerCase()) && locale != null) {
+            // First try tenant-specific localized version
             reportPath = getReportPath() + reportName + "_" + locale.toString().toLowerCase() + ".prpt";
+            
+            // Fallback 1: tenant-specific non-localized version
+            if (!new File(reportPath).exists()) {
+                reportPath = getReportPath() + reportName + ".prpt";
+            }
+            
+            // Fallback 2: shared localized version
+            if (!new File(reportPath).exists()) {
+                String sharedPath = getSharedReportsPath() + reportName + "_" + locale.toString().toLowerCase() + ".prpt";
+                if (new File(sharedPath).exists()) {
+                    reportPath = sharedPath;
+                }
+            }
         } else {
+            // First try tenant-specific version
             reportPath = getReportPath() + reportName + ".prpt";
+            
+            // Fallback: shared version
+            if (!new File(reportPath).exists()) {
+                String sharedPath = getSharedReportsPath() + reportName + ".prpt";
+                if (new File(sharedPath).exists()) {
+                    reportPath = sharedPath;
+                }
+            }
         }
         var outPutInfo = "Report path: " + reportPath;
         logger.debug("Report path: {}", outPutInfo);
+        File reportFile = new File(reportPath);
+        if (!reportFile.exists()) {
+            throw new PlatformDataIntegrityException("error.msg.report.not.found", 
+                "Report not found at: " + reportPath);
+        }
 
         // load report definition
         final var manager = new ResourceManager();
@@ -228,6 +256,13 @@ public class PentahoReportingProcessServiceImpl implements ReportingProcessServi
         }
     }
 
+    private String getSharedReportsPath() {
+        if (fineractPentahoBaseDir != null) {
+            return this.fineractPentahoBaseDir + File.separator + "shared" + File.separator;
+        }
+        return this.mifosBaseDir + File.separator + "pentahoReports" + File.separator + "shared" + File.separator;
+    }
+    
     private void addParametersToReport(final MasterReport report, final Map<String, String> queryParams) {
         final var currentUser = this.context.authenticatedUser();
         try {
@@ -337,10 +372,19 @@ public class PentahoReportingProcessServiceImpl implements ReportingProcessServi
     }
 
     private String getReportPath() {
+        String basePath;
         if (fineractPentahoBaseDir != null) {
-            return this.fineractPentahoBaseDir + File.separator;
+            basePath = this.fineractPentahoBaseDir;
+        } else {
+            basePath = this.mifosBaseDir + File.separator + "pentahoReports";
         }
-        return this.mifosBaseDir + File.separator + "pentahoReports" + File.separator;
+        
+        // Get current tenant identifier
+        final FineractPlatformTenant tenant = ThreadLocalContextUtil.getTenant();
+        String tenantIdentifier = tenant != null ? tenant.getTenantIdentifier() : "default";
+        
+        // Append tenant-specific subdirectory
+        return basePath + File.separator + "tenant_" + tenantIdentifier + File.separator;
     }
 
     private void setConnectionDetail(DataFactory dataFactory) throws SQLException {
